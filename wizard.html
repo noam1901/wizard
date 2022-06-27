@@ -2,51 +2,58 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wizard</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="wizard.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wizard</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="wizard.css">
 </head>
 
 <body>
-    <form id="regForm" action="/action_page.php">
-        <h1>Register:</h1>
-        <!-- One "tab" for each step in the form: -->
-        <div class="tab">Name:
-          <p><input placeholder="Full name..." oninput="validName(this)" name="fname"></p>
-          <p><input placeholder="E-mail..." oninput="validEmail(this)" name="email"></p>
-          <p><input type="date" placeholder="E-mail..." oninput="validDate(this)" name="email"></p>
-        </div>
-        <div class="tab">Contact Info:
-          
-          <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
-        </div>
-        <div class="tab">Birthday:
-          <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-          <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-          <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
-        </div>
-        <div class="tab">Login Info:
-          <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-          <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-        </div>
-        <div style="overflow:auto;">
-          <div style="float:right;">
-            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-            <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-          </div>
-        </div>
-        <!-- Circles which indicates the steps of the form: -->
-        <div style="text-align:center;margin-top:40px;">
-          <span class="step"></span>
-          <span class="step"></span>
-          <span class="step"></span>
-          <span class="step"></span>
-        </div>
-      </form>
+  <form id="regForm" action="/action_page.php">
+    <h1>Register:</h1>
+    <!-- One "tab" for each step in the form: -->
+    <div class="tab">Name:
+      <p><input placeholder="Full name..." oninput="validName(this)" name="fname"></p>
+      <p><input placeholder="E-mail..." oninput="validEmail(this)" name="email"></p>
+      <p><input type="date" placeholder="E-mail..." oninput="validDate(this)" name="email"></p>
+    </div>
+    <div class="tab">Address:
+      <p>
+        <select name="cities" id="city" onchange="validateCity(this)">
+          <option value="" selected>Choose City</option>
+        </select><span id="city_span" class="city">*</span>
+      </p>
+      <p><input placeholder="Street..." name="street" oninput="validateStreet(this)"></p>
+      <p><input placeholder="Number..." name="number" type="number" oninput="validateNumber(this)"></p>
+
+    </div>
+    <div class="tab">Birthday:
+      <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
+      <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
+      <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+    </div>
+    <div class="tab">Login Info:
+      <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+      <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+    </div>
+    <div style="overflow:auto;">
+      <div style="float:right;">
+        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+    </div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+  </form>
 </body>
 
 <script src="wizard.js"></script>
+
 </html>
