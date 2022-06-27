@@ -1,4 +1,3 @@
-/* eslint-disable */
 let currentTab = 0; // Current tab is set to be the first tab (0)
 const citySelect = document.querySelector("#city")
 const citySpan = document.querySelector("#city_span")
