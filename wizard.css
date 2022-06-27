@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/halloween-spooky');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -16,7 +16,7 @@ body {
 #regForm {
   background: url("https://wallpapercave.com/wp/wp9477356.jpg");
   margin: 100px auto;
-  font-family: 'Halloween Spooky', sans-serif;
+  font-family: 'Creepster', cursive;
   padding: 40px;
   width: 70%;
   min-width: 300px;
