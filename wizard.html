@@ -15,18 +15,18 @@
     <h1>Register:</h1>
     <!-- One "tab" for each step in the form: -->
     <div class="tab">Name:
-      <p><input placeholder="Full name..." oninput="validName(this)" name="fname"></p>
-      <p><input placeholder="E-mail..." oninput="validEmail(this)" name="email"></p>
-      <p><input type="date" placeholder="E-mail..." oninput="validDate(this)" name="email"></p>
+      <p><input id="fullname" placeholder="Full name..." oninput="validName(this)" name="fname"></p>
+      <p><input id="email" placeholder="E-mail..." oninput="validEmail(this)" name="email"></p>
+      <p><input id="bDay" type="date" oninput="validDate(this)"></p>
     </div>
     <div class="tab">Address:
       <p>
         <select name="cities" id="city" onchange="validateCity(this)">
-          <option value="" selected>Choose City</option>
+          <option value="">Choose City</option>
         </select><span id="city_span" class="city">*</span>
       </p>
-      <p><input placeholder="Street..." name="street" oninput="validateStreet(this)"></p>
-      <p><input placeholder="Number..." name="number" type="number" oninput="validateNumber(this)"></p>
+      <p><input id="street" placeholder="Street..." name="street" oninput="validateStreet(this)"></p>
+      <p><input id="number" placeholder="Number..." name="number" type="number" oninput="validateNumber(this)"></p>
 
     </div>
     <div class="tab">Birthday:
