@@ -15,11 +15,12 @@
         <h1>Register:</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab">Name:
-          <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
-          <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
+          <p><input placeholder="Full name..." oninput="validName(this)" name="fname"></p>
+          <p><input placeholder="E-mail..." oninput="validEmail(this)" name="email"></p>
+          <p><input type="date" placeholder="E-mail..." oninput="validDate(this)" name="email"></p>
         </div>
         <div class="tab">Contact Info:
-          <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
+          
           <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
         </div>
         <div class="tab">Birthday:
