@@ -1,9 +1,12 @@
-var currentTab = 0; // Current tab is set to be the first tab (0)
+let currentTab = 0; // Current tab is set to be the first tab (0)
+const citySelect = document.querySelector("#city")
 showTab(currentTab); // Display the current tab
+
+
 
 function showTab(n) {
   // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
+  let x = document.getElementsByClassName("tab");
   x[n].style.display = "block";
   //... and fix the Previous/Next buttons:
   if (n == 0) {
@@ -22,7 +25,7 @@ function showTab(n) {
 
 function nextPrev(n) {
   // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
+  let x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) return false;
   // Hide the current tab:
@@ -41,11 +44,11 @@ function nextPrev(n) {
 
 function validateForm() {
   // This function deals with validation of the form fields
-  var x, y, i, valid = true;
+  let x, y, valid = true;
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
+  for (let i = 0; i < y.length; i++) {
     // If a field is empty...
     if (y[i].value == "") {
       // add an "invalid" class to the field:
@@ -63,10 +66,33 @@ function validateForm() {
 
 function fixStepIndicator(n) {
   // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
+  let i, x = document.getElementsByClassName("step");
   for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace(" active", "");
   }
   //... and adds the "active" class on the current step:
   x[n].className += " active";
+}
+
+
+const getCities = async () => {
+  const response = await fetch("./cities.json")
+  const data = await response.json()
+  for (const city of data.cities) {
+    const cityOption = document.createElement("option")
+    cityOption.value = city
+    cityOption.innerText = city
+    citySelect.append(cityOption)
+  }
+}
+getCities()
+
+const validateStreet = (e) => {
+  const streetRegEx = /^[A-Za-z]+\s*[./]*[A-Za-z]*$/g
+  if (!streetRegEx.test(e.value)) {
+    e.classList.add("invalid");
+    console.log("hey");
+  } else {
+    e.classList.remove("invalid")
+  }
 }
