@@ -1,7 +1,7 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
-const regexName = new RegExp("^(([ ,.'-](?<!( {2}|[,.'-]{2})))*[A-Za-z])+[ ,.'-]?$")
-const regexEmail = new RegExp('^([A-Za-z]|[0-9])+$')
+const regexName = new RegExp("^[آ-یA-z]{2,}( [آ-یA-z]{2,})+([آ-یA-z]|[ ]?)$")
+const regexEmail = new RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
 
 function showTab(n) {
   // This function will display the specified tab of the form...
@@ -49,9 +49,10 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
+    if (y[i].value == "" || y[i].classList.contains("invalid")) {
+      if (y[i].value == ""){
+        y[i].classList.add("invalid")
+      }
       // and set the current valid status to false
       valid = false;
     }
@@ -84,9 +85,20 @@ function validName(e){
 function validEmail(e){
   if(!regexEmail.test(e.value)){
     e.className+= " invalid"
+  }else{
+    e.classList.remove("invalid")
   }
 }
 
 function validDate(e){
-  console.log(e.value)
+  if(e.value != ""){
+    const date =  e.value.split('-')  
+    const current = new Date()
+    if(current.getFullYear() < date[0] || current.getFullYear()-date[0] < 18 || current.getFullYear()-date[0] == 18 && current.getMonth() < date[1] && current.getDay() < date[2]){
+      e.className += " invalid"
+      return
+    } else{
+      e.classList.remove("invalid")
+    }
+  } 
 }
