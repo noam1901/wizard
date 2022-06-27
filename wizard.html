@@ -14,28 +14,29 @@
   <form id="regForm" action="/action_page.php">
     <h1>Register:</h1>
     <!-- One "tab" for each step in the form: -->
-    <!-- <div class="tab">Name:
-      <p><input placeholder="First name..." name="fname"></p>
-      <p><input placeholder="Last name..." name="lname"></p>
-    </div> -->
+    <div class="tab">Name:
+      <p><input placeholder="Full name..." oninput="validName(this)" name="fname"></p>
+      <p><input placeholder="E-mail..." oninput="validEmail(this)" name="email"></p>
+      <p><input type="date" placeholder="E-mail..." oninput="validDate(this)" name="email"></p>
+    </div>
     <div class="tab">Address:
       <p>
-        <select name="cities" id="city">
-          <option value="" selected disabled>Choose City</option>
-        </select>
+        <select name="cities" id="city" onchange="validateCity(this)">
+          <option value="" selected>Choose City</option>
+        </select><span id="city_span" class="city">*</span>
       </p>
       <p><input placeholder="Street..." name="street" oninput="validateStreet(this)"></p>
-      <p><input placeholder="Number..." name="number"></p>
+      <p><input placeholder="Number..." name="number" type="number" oninput="validateNumber(this)"></p>
 
     </div>
     <div class="tab">Birthday:
-      <p><input placeholder="dd" name="dd"></p>
-      <p><input placeholder="mm" name="nn"></p>
-      <p><input placeholder="yyyy" name="yyyy"></p>
+      <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
+      <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
+      <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
     </div>
     <div class="tab">Login Info:
-      <p><input placeholder="Username..." name="uname"></p>
-      <p><input placeholder="Password..." name="pword" type="password"></p>
+      <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+      <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
     </div>
     <div style="overflow:auto;">
       <div style="float:right;">

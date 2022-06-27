@@ -1,6 +1,10 @@
+/* eslint-disable */
 let currentTab = 0; // Current tab is set to be the first tab (0)
 const citySelect = document.querySelector("#city")
+const citySpan = document.querySelector("#city_span")
+
 showTab(currentTab); // Display the current tab
+const regexName = new RegExp("^[A-z]{2,}( [A-z]{2,})+([A-z]|[ ]?)$")
 
 
 
@@ -48,15 +52,21 @@ function validateForm() {
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   // A loop that checks every input field in the current tab:
+  if (citySelect.value === "" && currentTab === 1) {
+    citySpan.classList.remove("city")
+    valid = false
+  }
   for (let i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
+    if (y[i].value == "" || y[i].classList.contains("invalid")) {
+      if (y[i].value == "") {
+        y[i].classList.add("invalid")
+      }
       // and set the current valid status to false
       valid = false;
     }
   }
+
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -75,6 +85,7 @@ function fixStepIndicator(n) {
 }
 
 
+
 const getCities = async () => {
   const response = await fetch("./cities.json")
   const data = await response.json()
@@ -86,13 +97,56 @@ const getCities = async () => {
   }
 }
 getCities()
+const validateCity = (e) => {
+  if (e.value === "") {
+    citySpan.classList.remove("city")
+  } else {
+    citySpan.classList.add("city")
+  }
+}
 
 const validateStreet = (e) => {
-  const streetRegEx = /^[A-Za-z]+\s*[./]*[A-Za-z]*$/g
+  const streetRegEx = /^[A-Za-z]+\s?[./]?[A-Za-z]*$/g
   if (!streetRegEx.test(e.value)) {
     e.classList.add("invalid");
-    console.log("hey");
   } else {
     e.classList.remove("invalid")
+  }
+}
+const validateNumber = (e) => {
+  if (Number(e.value) <= 0 || (Math.floor(Number(e.value)) !== Number(e.value)) || Number(e.value) === Infinity) {
+    e.classList.add("invalid");
+  } else {
+    e.classList.remove("invalid")
+  }
+}
+
+function validName(e) {
+  if (!regexName.test(e.value)) {
+    e.className += " invalid"
+  } else {
+    e.classList.remove("invalid")
+  }
+}
+
+function validEmail(e) {
+  const regexEmail = /^\S+@\S+\.\S+$/
+  if (!regexEmail.test(e.value)) {
+    e.className += " invalid"
+  } else {
+    e.classList.remove("invalid")
+  }
+}
+
+function validDate(e) {
+  if (e.value != "") {
+    const date = e.value.split('-')
+    const current = new Date()
+    if (current.getFullYear() < date[0] || current.getFullYear() - date[0] < 18 || current.getFullYear() - date[0] == 18 && current.getMonth() < date[1] && current.getDay() < date[2]) {
+      e.className += " invalid"
+      return
+    } else {
+      e.classList.remove("invalid")
+    }
   }
 }
