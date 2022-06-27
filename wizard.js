@@ -17,9 +17,7 @@ const loadData = () => {
   email.value = localStorage.getItem("email") || ""
   bDay.value = localStorage.getItem("date") || ""
   street.value = localStorage.getItem("street") || ""
-  let selectedCity = localStorage.getItem("city")
-  console.log(selectedCity)
-  document.querySelector(`#${selectedCity}`).selected = "true"
+  citySelect.value = localStorage.getItem("city") || ""
   number.value = localStorage.getItem("number") || ""
 
 }
