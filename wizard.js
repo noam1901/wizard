@@ -1,5 +1,7 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
+const regexName = new RegExp("^(([ ,.'-](?<!( {2}|[,.'-]{2})))*[A-Za-z])+[ ,.'-]?$")
+const regexEmail = new RegExp('^([A-Za-z]|[0-9])+$')
 
 function showTab(n) {
   // This function will display the specified tab of the form...
@@ -69,4 +71,22 @@ function fixStepIndicator(n) {
   }
   //... and adds the "active" class on the current step:
   x[n].className += " active";
+}
+
+function validName(e){
+  if (!regexName.test(e.value)){
+    e.className+= " invalid"
+  }else {
+    e.classList.remove("invalid")
+  }
+}
+
+function validEmail(e){
+  if(!regexEmail.test(e.value)){
+    e.className+= " invalid"
+  }
+}
+
+function validDate(e){
+  console.log(e.value)
 }
