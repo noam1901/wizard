@@ -70,3 +70,48 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
+
+const imgUrl = document.querySelector('#avatarUrl')
+const imgPreview = document.querySelector('#imgPreview')
+imgPreview.src = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+
+imgUrl.addEventListener('change', (e) => {
+  if(e.target.value.match(/(https?:\/\/.*\.(?:png|jpg))/i)){
+    imgPreview.src = e.target.value
+  }else{
+    imgPreview.src = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+    
+  }
+})
+
+const getHobbies = async() => {
+  const hobbies = await fetch('', {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'no-cors', // no-cors, *cors, same-origin
+    })
+  const results = await hobbies.json()
+  
+}
+
+const createCheckBox = (results) => {
+  results.forEach(hobbie => {
+    const formCheck = document.createElement('div')
+    formCheck.setAttribute('class', 'form-check')
+
+    const checkInput = document.createElement('input')
+    checkInput.setAttribute('class', 'form-check-input')
+    checkInput.setAttribute('type', 'checkbox')
+    checkInput.setAttribute('id', 'flexCheckHobbie')
+
+    const checkBoxLabel = document.createElement('label')
+    checkBoxLabel.setAttribute('class', 'form-check-label')
+    checkBoxLabel.setAttribute('for', 'flexCheckHobbie')
+    checkBoxLabel.innerText = hobbie.hobbie_name
+
+    formCheck.append(checkInput, checkBoxLabel)
+    document.querySelector('#imgAndHobbies').appendChild(formCheck)
+  });
+  
+}
+
+getHobbies()

@@ -75,3 +75,9 @@
   .step.finish {
     background-color: #04AA6D;
   }
+
+  #imgPreview{
+    height: 5rem;
+    width: auto;
+    
+  }

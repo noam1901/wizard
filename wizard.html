@@ -8,13 +8,14 @@
     <title>Wizard</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="wizard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.min.css" integrity="sha512-N415hCJJdJx+1UBfULt+i+ihvOn42V/kOjOpp1UTh4CZ70Hx5bDlKryWaqEKfY/8EYOu/C2MuyaluJryK1Lb5Q==" crossorigin="anonymous" />
 </head>
 
 <body>
     <form id="regForm" action="/action_page.php">
         <h1>Register:</h1>
         <!-- One "tab" for each step in the form: -->
-        <!-- <div class="tab">Name:
+        <div class="tab">Name:
           <p><input placeholder="First name..." name="fname"></p>
           <p><input placeholder="Last name..." name="lname"></p>
         </div>
@@ -30,12 +31,13 @@
         <div class="tab">Login Info:
           <p><input placeholder="Username..." name="uname"></p>
           <p><input placeholder="Password..." name="pword" type="password"></p>
-        </div> -->
+        </div>
 
-        <div class="tab">
+        <div class="tab" id="imgAndHobbies">
           Image (url):
-          <p><input type="url" name="" id=""></p>
-          Hobbies:
+          <p><input type="url" name="" id="avatarUrl"></p>
+          <img src="" alt="preview" id="imgPreview">
+          <div>Hobbies:</div>
           
         </div>
 
@@ -55,5 +57,6 @@
       </form>
 </body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.min.js" integrity="sha512-mp3VeMpuFKbgxm/XMUU4QQUcJX4AZfV5esgX72JQr7H7zWusV6lLP1S78wZnX2z9dwvywil1VHkHZAqfGOW7Nw==" crossorigin="anonymous"></script>
 <script src="wizard.js"></script>
 </html>

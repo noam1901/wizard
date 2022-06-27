@@ -1,0 +1,19 @@
+[
+    {"id": 1, "hobbie_name": "Reading"},
+    {"id": 2, "hobbie_name": "Gardening"},
+    {"id": 3, "hobbie_name": "Fishing"},
+    {"id": 4, "hobbie_name": "Potion brewing"},
+    {"id": 5, "hobbie_name": "Traveling"},
+    {"id": 6, "hobbie_name": "Board Games"},
+    {"id": 7, "hobbie_name": "Painting"},
+    {"id": 8, "hobbie_name": "Cooking"},
+    {"id": 9, "hobbie_name": "Chess"},
+    {"id": 10, "hobbie_name": "Duelling"},
+    {"id": 11, "hobbie_name": "Spell making"},
+    {"id": 12, "hobbie_name": "Flying on a broom"},
+    {"id": 13, "hobbie_name": "Music"},
+    {"id": 14, "hobbie_name": "Knitting"},
+    {"id": 15, "hobbie_name": "Puzzle solving"},
+    {"id": 16, "hobbie_name": "Camping"},
+    {"id": 17, "hobbie_name": "Card games"}
+]
