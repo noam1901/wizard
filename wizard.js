@@ -7,10 +7,13 @@ const email = document.querySelector("#email")
 const bDay = document.querySelector("#bDay")
 const street = document.querySelector("#street")
 const number = document.querySelector("#number")
-
+const imgUrl = document.querySelector('#avatarUrl')
+const imgPreview = document.querySelector('#imgPreview')
+const info = document.querySelector("#info")
+const finalImage = document.querySelector("#final_img")
+const hobbies = document.querySelectorAll(".form-check-input:checked").value
 
 showTab(currentTab); // Display the current tab
-const regexName = new RegExp("^[A-z]{2,}( [A-z]{2,})+([A-z]|[ ]?)$")
 
 const loadData = () => {
   fullName.value = localStorage.getItem("name") || ""
@@ -19,9 +22,22 @@ const loadData = () => {
   street.value = localStorage.getItem("street") || ""
   citySelect.value = localStorage.getItem("city") || ""
   number.value = localStorage.getItem("number") || ""
-
+  imgUrl.value = localStorage.getItem("image") || "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
 }
 loadData()
+
+const showInfo = () => {
+  finalImage.src = localStorage.getItem("image")
+  finalImage.alt = localStorage.getItem("name")
+  info.innerText =
+    `Name: ${localStorage.getItem("name")}\n
+  Email:${localStorage.getItem("email")}\n
+  Bday:${localStorage.getItem("date")}\n
+  Address:${localStorage.getItem("city")},${localStorage.getItem("street")},${localStorage.getItem("number")}\n
+  Hobbies:${hobbies}
+  `
+  console.log(hobbies);
+}
 
 
 function showTab(n) {
@@ -34,8 +50,11 @@ function showTab(n) {
   } else {
     document.getElementById("prevBtn").style.display = "inline";
   }
+  if (n == (x.length - 2)) {
+    showInfo()
+  }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "Create new one!";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
@@ -55,11 +74,13 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
     // ... the form gets submitted:
-    document.getElementById("regForm").submit();
+    // document.getElementById("regForm").submit();
+    localStorage.clear()
+    location.reload()
     return false;
   }
   // Otherwise, display the correct tab:
-  localStorage.setItem("currentTab", currentTab)
+
   showTab(currentTab);
 }
 
@@ -153,6 +174,7 @@ const validateNumber = (e) => {
 }
 
 function validName(e) {
+  const regexName = new RegExp("^[A-z]{2,}( [A-z]{2,})+([A-z]|[ ]?)$")
   if (!regexName.test(e.value)) {
     e.className += " invalid"
     localStorage.setItem("name", "")
@@ -188,3 +210,48 @@ function validDate(e) {
     }
   }
 }
+
+
+imgUrl.addEventListener('change', (e) => {
+  if (e.target.value.match(/(https?:\/\/.*\.(?:png|jpg))/i)) {
+    imgPreview.src = e.target.value
+    localStorage.setItem("image", e.target.value)
+    imgPreview.classList.remove("invalid")
+  } else {
+    imgPreview.src = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+    imgPreview.classList.add("invalid")
+    localStorage.setItem("image", "")
+
+  }
+})
+
+const getHobbies = async () => {
+  const hobbies = await fetch('./hobbies.json')
+  const results = await hobbies.json()
+  createCheckBox(results)
+
+}
+
+const createCheckBox = (results) => {
+  results.forEach(hobbie => {
+    const formCheck = document.createElement('div')
+    formCheck.setAttribute('class', 'form-check')
+
+    const checkInput = document.createElement('input')
+    checkInput.setAttribute('class', 'form-check-input')
+    checkInput.setAttribute('type', 'checkbox')
+    checkInput.setAttribute('id', 'flexCheckHobbie')
+    checkInput.setAttribute('value', hobbie.hobbie_name)
+
+    const checkBoxLabel = document.createElement('label')
+    checkBoxLabel.setAttribute('class', 'form-check-label')
+    checkBoxLabel.setAttribute('for', 'flexCheckHobbie')
+    checkBoxLabel.innerText = hobbie.hobbie_name
+
+    formCheck.append(checkInput, checkBoxLabel)
+    document.querySelector('#imgAndHobbies').appendChild(formCheck)
+  });
+
+}
+
+getHobbies()
