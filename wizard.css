@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -16,7 +17,7 @@ body {
 #regForm {
   background: url("https://wallpapercave.com/wp/wp9477356.jpg");
   margin: 100px auto;
-  font-family: 'Creepster', cursive;
+
   padding: 40px;
   width: 70%;
   min-width: 300px;
@@ -90,4 +91,10 @@ button:hover {
 #city_span {
   color: red;
   font-size: x-large;
+}
+
+#imgPreview {
+  height: 5rem;
+  width: auto;
+
 }
