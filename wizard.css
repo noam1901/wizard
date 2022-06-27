@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/halloween-spooky');
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -17,7 +17,7 @@ body {
 #regForm {
   background: url("https://wallpapercave.com/wp/wp9477356.jpg");
   margin: 100px auto;
-  color: white;
+
   padding: 40px;
   width: 70%;
   min-width: 300px;
